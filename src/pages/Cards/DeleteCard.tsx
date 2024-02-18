@@ -1,5 +1,5 @@
-import { ConfirmationDialog } from '../../components/ConfirmationDialog';
-import { useDeleteCard } from '../../hooks/Card/useDeleteCard';
+import { ConfirmationDialog } from "../../components/ConfirmationDialog";
+import { useDeleteCard } from "../../hooks/Card/useDeleteCard";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -10,8 +10,21 @@ interface ComponentProps {
   limit?: string;
 }
 
-export function DeleteCard({ isOpen, onClose, groupId, cardId, page, limit }: ComponentProps) {
-  const { mutate, isLoading } = useDeleteCard({ groupId, successCallback: onClose, cardId, page, limit });
+export function DeleteCard({
+  isOpen,
+  onClose,
+  groupId,
+  cardId,
+  page,
+  limit,
+}: ComponentProps) {
+  const { mutate, isLoading } = useDeleteCard({
+    groupId,
+    successCallback: onClose,
+    cardId,
+    page,
+    limit,
+  });
   return (
     <ConfirmationDialog
       isOpen={isOpen}

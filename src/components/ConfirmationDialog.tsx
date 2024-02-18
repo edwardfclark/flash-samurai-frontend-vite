@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from '@mui/material';
+} from "@mui/material";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -17,7 +17,14 @@ interface ComponentProps {
   isLoading?: boolean;
 }
 
-export function ConfirmationDialog({ isOpen, onClose, onConfirm, title, description, isLoading }: ComponentProps) {
+export function ConfirmationDialog({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  description,
+  isLoading,
+}: ComponentProps) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
@@ -31,7 +38,11 @@ export function ConfirmationDialog({ isOpen, onClose, onConfirm, title, descript
           Cancel
         </Button>
         <Button onClick={onConfirm} variant="contained">
-          {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Confirm'}
+          {isLoading ? (
+            <CircularProgress size={24} color="inherit" />
+          ) : (
+            "Confirm"
+          )}
         </Button>
       </DialogActions>
     </Dialog>

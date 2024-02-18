@@ -1,11 +1,21 @@
-import { useState } from 'react';
-import { Box, TextField, Button, Avatar, Typography, Container } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useAuth } from '../../hooks/useAuth';
-import { Navigate } from 'react-router-dom';
+import { useState } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  Avatar,
+  Typography,
+  Container,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { useAuth } from "../../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 export function Login() {
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
   const { token, login } = useAuth();
 
   // If the user is already logged in, redirect them to the home page.
@@ -18,12 +28,12 @@ export function Login() {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -47,7 +57,9 @@ export function Login() {
             name="username"
             autoComplete="username"
             value={credentials.username}
-            onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+            onChange={(e) =>
+              setCredentials({ ...credentials, username: e.target.value })
+            }
             autoFocus
           />
           <TextField
@@ -60,9 +72,16 @@ export function Login() {
             id="password"
             autoComplete="current-password"
             value={credentials.password}
-            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+            onChange={(e) =>
+              setCredentials({ ...credentials, password: e.target.value })
+            }
           />
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
             Sign In
           </Button>
         </Box>

@@ -1,5 +1,5 @@
-import { ConfirmationDialog } from '../../components/ConfirmationDialog';
-import { useDeleteTag } from '../../hooks/Tag/useDeleteTag';
+import { ConfirmationDialog } from "../../components/ConfirmationDialog";
+import { useDeleteTag } from "../../hooks/Tag/useDeleteTag";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -9,7 +9,11 @@ interface ComponentProps {
 }
 
 export function DeleteTag({ isOpen, onClose, groupId, tagId }: ComponentProps) {
-  const { mutate, isLoading } = useDeleteTag({ groupId, successCallback: onClose, tagId });
+  const { mutate, isLoading } = useDeleteTag({
+    groupId,
+    successCallback: onClose,
+    tagId,
+  });
   return (
     <ConfirmationDialog
       isOpen={isOpen}

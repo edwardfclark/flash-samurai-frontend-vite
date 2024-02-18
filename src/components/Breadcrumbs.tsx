@@ -1,5 +1,5 @@
-import { Breadcrumbs as MuiBreadcrumbs, Link, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Breadcrumbs as MuiBreadcrumbs, Link, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface Breadcrumb {
   name: string;
@@ -21,7 +21,7 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
             key={breadcrumb.name}
             color="inherit"
             onClick={() => navigate(breadcrumb.path)}
-            sx={{ cursor: 'pointer' }}
+            sx={{ cursor: "pointer" }}
           >
             {breadcrumb.name}
           </Link>

@@ -1,6 +1,6 @@
-import { MoreVert } from '@mui/icons-material';
-import { IconButton, Menu, MenuItem, Box } from '@mui/material';
-import { useState } from 'react';
+import { MoreVert } from "@mui/icons-material";
+import { IconButton, Menu, MenuItem, Box } from "@mui/material";
+import { useState } from "react";
 
 interface ComponentProps {
   options: {
@@ -21,7 +21,7 @@ export function RowActionsMenu({ options }: ComponentProps) {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row-reverse', width: '100%' }}>
+    <Box sx={{ display: "flex", flexDirection: "row-reverse", width: "100%" }}>
       <IconButton size="small" onClick={handleActionsOpen}>
         <MoreVert />
       </IconButton>
@@ -29,13 +29,13 @@ export function RowActionsMenu({ options }: ComponentProps) {
         id="menu-appbar"
         anchorEl={anchorElNav}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: "bottom",
+          horizontal: "left",
         }}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         open={Boolean(anchorElNav)}
         onClose={handleActionsClose}

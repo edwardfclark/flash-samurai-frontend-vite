@@ -1,9 +1,9 @@
-import { Typography, Box, CircularProgress } from '@mui/material';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useGetCard } from '../../hooks/Card/useGetCard';
-import { CardForm } from '../../components/forms/CardForm';
-import { useUpdateCard } from '../../hooks/Card/useUpdateCard';
+import { Typography, Box, CircularProgress } from "@mui/material";
+import { Breadcrumbs } from "../../components/Breadcrumbs";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetCard } from "../../hooks/Card/useGetCard";
+import { CardForm } from "../../components/forms/CardForm";
+import { useUpdateCard } from "../../hooks/Card/useUpdateCard";
 
 export function CardUpdate() {
   const params = useParams();
@@ -22,22 +22,25 @@ export function CardUpdate() {
     <>
       <Breadcrumbs
         breadcrumbs={[
-          { name: 'Card Groups', path: '/' },
-          { name: 'Cards', path: `/groups/${groupId}/cards` },
-          { name: 'Update Card', path: `/groups/${groupId}/cards/${cardId}/edit` },
+          { name: "Card Groups", path: "/" },
+          { name: "Cards", path: `/groups/${groupId}/cards` },
+          {
+            name: "Update Card",
+            path: `/groups/${groupId}/cards/${cardId}/edit`,
+          },
         ]}
       />
-      <Typography variant="h2" sx={{ margin: '0 0 2rem' }}>
+      <Typography variant="h2" sx={{ margin: "0 0 2rem" }}>
         Update Card
       </Typography>
       {isLoading && (
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            mt: '5rem',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            mt: "5rem",
           }}
         >
           <CircularProgress size={80} />

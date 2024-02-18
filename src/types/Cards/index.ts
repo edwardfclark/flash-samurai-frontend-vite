@@ -1,4 +1,4 @@
-import { ITag } from '../Tags';
+import { ITag } from "../Tags";
 
 export interface ICardForm {
   groupId?: string;

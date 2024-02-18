@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { RowActionsMenu } from '../../components/RowActionsMenu';
-import { DeleteTag } from './DeleteTag';
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { RowActionsMenu } from "../../components/RowActionsMenu";
+import { DeleteTag } from "./DeleteTag";
 
 interface ComponentProps {
   row: {
@@ -22,11 +22,19 @@ export function Actions({ row }: ComponentProps) {
     <div>
       <RowActionsMenu
         options={[
-          { name: 'Edit', action: () => navigate(`/groups/${groupId}/tags/${row.id}/edit`) },
-          { name: 'Delete', action: () => setModalOpen(true) },
+          {
+            name: "Edit",
+            action: () => navigate(`/groups/${groupId}/tags/${row.id}/edit`),
+          },
+          { name: "Delete", action: () => setModalOpen(true) },
         ]}
       />
-      <DeleteTag isOpen={modalOpen} onClose={() => setModalOpen(false)} tagId={row.id} groupId={groupId} />
+      <DeleteTag
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        tagId={row.id}
+        groupId={groupId}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { axiosClient } from '../../services';
-import { enqueueSnackbar } from 'notistack';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { axiosClient } from "../../services";
+import { enqueueSnackbar } from "notistack";
 
 export function useDeleteTag({
   groupId,
@@ -14,14 +14,15 @@ export function useDeleteTag({
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => axiosClient.delete(`/api/tag/${tagId}`).then((res) => res.data),
+    mutationFn: () =>
+      axiosClient.delete(`/api/tag/${tagId}`).then((res) => res.data),
     onSuccess: () => {
-      enqueueSnackbar('Tag deleted', { variant: 'success' });
-      queryClient.invalidateQueries({ queryKey: ['tags', groupId] });
+      enqueueSnackbar("Tag deleted", { variant: "success" });
+      queryClient.invalidateQueries({ queryKey: ["tags", groupId] });
       successCallback?.();
     },
     onError: () => {
-      enqueueSnackbar('Tag deletion failed', { variant: 'error' });
+      enqueueSnackbar("Tag deletion failed", { variant: "error" });
     },
   });
 }

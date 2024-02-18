@@ -9,25 +9,28 @@ import {
   MenuItem,
   FormControlLabel,
   Switch,
-} from '@mui/material';
-import { useState, useEffect } from 'react';
-import { Menu as MenuIcon, Logout } from '@mui/icons-material';
-import { useLocation, useNavigate } from 'react-router-dom';
-import useLocalStorageState from 'use-local-storage-state';
-import { useAuth } from '../../hooks/useAuth';
-import { navItems } from './navItems';
-import { THEME_PALETTE_KEY } from '../../utils/constants';
+} from "@mui/material";
+import { useState, useEffect } from "react";
+import { Menu as MenuIcon, Logout } from "@mui/icons-material";
+import { useLocation, useNavigate } from "react-router-dom";
+import useLocalStorageState from "use-local-storage-state";
+import { useAuth } from "../../hooks/useAuth";
+import { navItems } from "./navItems";
+import { THEME_PALETTE_KEY } from "../../utils/constants";
 
 export function NavMenu() {
-  const [themePalette, setThemePalette] = useLocalStorageState(THEME_PALETTE_KEY, { defaultValue: 'light' });
+  const [themePalette, setThemePalette] = useLocalStorageState(
+    THEME_PALETTE_KEY,
+    { defaultValue: "light" },
+  );
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const { isAuthenticated, logout } = useAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated && pathname !== '/login') {
-      navigate('/login');
+    if (!isAuthenticated && pathname !== "/login") {
+      navigate("/login");
     }
   }, [isAuthenticated, pathname]);
 
@@ -61,13 +64,13 @@ export function NavMenu() {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleNavMenuClose}
@@ -80,8 +83,12 @@ export function NavMenu() {
               <FormControlLabel
                 control={
                   <Switch
-                    checked={themePalette === 'dark'}
-                    onChange={() => (themePalette === 'dark' ? setThemePalette('light') : setThemePalette('dark'))}
+                    checked={themePalette === "dark"}
+                    onChange={() =>
+                      themePalette === "dark"
+                        ? setThemePalette("light")
+                        : setThemePalette("dark")
+                    }
                   />
                 }
                 label="Dark Mode"
@@ -93,7 +100,12 @@ export function NavMenu() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Flash Samurai
           </Typography>
-          <IconButton size="large" color="inherit" aria-label="logout" onClick={logout}>
+          <IconButton
+            size="large"
+            color="inherit"
+            aria-label="logout"
+            onClick={logout}
+          >
             <Logout />
           </IconButton>
         </Toolbar>

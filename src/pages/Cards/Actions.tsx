@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { RowActionsMenu } from '../../components/RowActionsMenu';
-import { DeleteCard } from './DeleteCard';
+import { useState } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { RowActionsMenu } from "../../components/RowActionsMenu";
+import { DeleteCard } from "./DeleteCard";
 
 interface ComponentProps {
   row: {
@@ -18,15 +18,18 @@ export function Actions({ row }: ComponentProps) {
   const groupId = params?.groupId;
   const [modalOpen, setModalOpen] = useState(false);
   const [searchParams] = useSearchParams();
-  const searchParamsPage = searchParams?.get('page');
-  const searchParamsLimit = searchParams?.get('limit');
+  const searchParamsPage = searchParams?.get("page");
+  const searchParamsLimit = searchParams?.get("limit");
 
   return (
     <div>
       <RowActionsMenu
         options={[
-          { name: 'Edit', action: () => navigate(`/groups/${groupId}/cards/${row.id}/edit`) },
-          { name: 'Delete', action: () => setModalOpen(true) },
+          {
+            name: "Edit",
+            action: () => navigate(`/groups/${groupId}/cards/${row.id}/edit`),
+          },
+          { name: "Delete", action: () => setModalOpen(true) },
         ]}
       />
       <DeleteCard
@@ -34,8 +37,8 @@ export function Actions({ row }: ComponentProps) {
         onClose={() => setModalOpen(false)}
         cardId={row.id}
         groupId={groupId}
-        page={searchParamsPage || '0'}
-        limit={searchParamsLimit || '20'}
+        page={searchParamsPage || "0"}
+        limit={searchParamsLimit || "20"}
       />
     </div>
   );

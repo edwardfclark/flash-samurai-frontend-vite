@@ -1,5 +1,5 @@
-import { ConfirmationDialog } from '../../components/ConfirmationDialog';
-import { useDeleteGroup } from '../../hooks/Group/useDeleteGroup';
+import { ConfirmationDialog } from "../../components/ConfirmationDialog";
+import { useDeleteGroup } from "../../hooks/Group/useDeleteGroup";
 
 interface ComponentProps {
   isOpen: boolean;
@@ -8,7 +8,10 @@ interface ComponentProps {
 }
 
 export function DeleteGroup({ isOpen, onClose, groupId }: ComponentProps) {
-  const { mutate, isLoading } = useDeleteGroup({ groupId, successCallback: onClose });
+  const { mutate, isLoading } = useDeleteGroup({
+    groupId,
+    successCallback: onClose,
+  });
   return (
     <ConfirmationDialog
       isOpen={isOpen}
