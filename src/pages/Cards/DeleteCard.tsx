@@ -18,7 +18,7 @@ export function DeleteCard({
   page,
   limit,
 }: ComponentProps) {
-  const { mutate, isLoading } = useDeleteCard({
+  const { mutate, isPending } = useDeleteCard({
     groupId,
     successCallback: onClose,
     cardId,
@@ -32,7 +32,7 @@ export function DeleteCard({
       title="Really delete card?"
       description="This action cannot be undone!"
       onConfirm={() => mutate()}
-      isLoading={isLoading}
+      isLoading={isPending}
     />
   );
 }

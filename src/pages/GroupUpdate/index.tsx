@@ -11,7 +11,7 @@ export function GroupUpdate() {
   const groupId = params?.groupId;
   const { data: group, isLoading } = useGetGroup({ groupId });
   const navigate = useNavigate();
-  const { mutate, isLoading: updateLoading } = useUpdateGroup({
+  const { mutate, isPending: updateLoading } = useUpdateGroup({
     groupId,
     successCallback: () => {
       navigate("/");

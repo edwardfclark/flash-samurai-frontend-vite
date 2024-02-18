@@ -11,7 +11,7 @@ export function CardUpdate() {
   const cardId = params?.cardId;
   const { data: card, isLoading } = useGetCard({ cardId });
   const navigate = useNavigate();
-  const { mutate, isLoading: updateLoading } = useUpdateCard({
+  const { mutate, isPending: updateLoading } = useUpdateCard({
     groupId,
     cardId,
     successCallback: () => {

@@ -9,7 +9,7 @@ interface ComponentProps {
 }
 
 export function DeleteTag({ isOpen, onClose, groupId, tagId }: ComponentProps) {
-  const { mutate, isLoading } = useDeleteTag({
+  const { mutate, isPending } = useDeleteTag({
     groupId,
     successCallback: onClose,
     tagId,
@@ -21,7 +21,7 @@ export function DeleteTag({ isOpen, onClose, groupId, tagId }: ComponentProps) {
       title="Really delete tag?"
       description="This action cannot be undone!"
       onConfirm={() => mutate()}
-      isLoading={isLoading}
+      isLoading={isPending}
     />
   );
 }

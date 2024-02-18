@@ -41,7 +41,7 @@ export function CardForm({
   const onSubmit: SubmitHandler<ICardForm> = (data: ICardForm) =>
     externalOnSubmit(data);
 
-  const { mutate, isLoading: createTagLoading } = useCreateTag({
+  const { mutate, isPending: createTagLoading } = useCreateTag({
     groupId,
     successCallback: () => {
       setIsTagFormOpen(false);

@@ -11,7 +11,7 @@ export function TagUpdate() {
   const tagId = params?.tagId;
   const { data: tag, isLoading } = useGetTag({ tagId });
   const navigate = useNavigate();
-  const { mutate, isLoading: updateLoading } = useUpdateTag({
+  const { mutate, isPending: updateLoading } = useUpdateTag({
     groupId,
     tagId,
     successCallback: () => {

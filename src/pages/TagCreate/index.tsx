@@ -8,7 +8,7 @@ export function TagCreate() {
   const params = useParams();
   const groupId = params?.groupId;
   const navigate = useNavigate();
-  const { mutate, isLoading } = useCreateTag({
+  const { mutate, isPending } = useCreateTag({
     groupId,
     successCallback: () => {
       navigate(`/groups/${groupId}/tags`);
@@ -29,7 +29,7 @@ export function TagCreate() {
       </Typography>
       <TagForm
         onSubmit={(data) => mutate({ ...data, groupId })}
-        isLoading={isLoading}
+        isLoading={isPending}
         onCancel={() => navigate(`/groups/${groupId}/tags`)}
       />
     </>

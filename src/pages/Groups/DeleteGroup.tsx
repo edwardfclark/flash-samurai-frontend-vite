@@ -8,7 +8,7 @@ interface ComponentProps {
 }
 
 export function DeleteGroup({ isOpen, onClose, groupId }: ComponentProps) {
-  const { mutate, isLoading } = useDeleteGroup({
+  const { mutate, isPending } = useDeleteGroup({
     groupId,
     successCallback: onClose,
   });
@@ -19,7 +19,7 @@ export function DeleteGroup({ isOpen, onClose, groupId }: ComponentProps) {
       title="Really delete group?"
       description="This action cannot be undone!"
       onConfirm={() => mutate()}
-      isLoading={isLoading}
+      isLoading={isPending}
     />
   );
 }

@@ -8,7 +8,7 @@ export function CardCreate() {
   const params = useParams();
   const groupId = params?.groupId;
   const navigate = useNavigate();
-  const { mutate, isLoading } = useCreateCard({
+  const { mutate, isPending } = useCreateCard({
     groupId,
     successCallback: () => {
       navigate(`/groups/${groupId}/cards`);
@@ -29,7 +29,7 @@ export function CardCreate() {
       </Typography>
       <CardForm
         onSubmit={(data) => mutate({ ...data, groupId })}
-        isLoading={isLoading}
+        isLoading={isPending}
         onCancel={() => navigate(`/groups/${groupId}/cards`)}
         groupId={groupId}
       />

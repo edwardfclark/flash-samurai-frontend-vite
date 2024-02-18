@@ -6,7 +6,7 @@ import { GroupForm } from "../../components/forms/GroupForm";
 
 export function GroupCreate() {
   const navigate = useNavigate();
-  const { mutate, isLoading } = useCreateGroup({
+  const { mutate, isPending } = useCreateGroup({
     successCallback: () => {
       navigate("/");
     },
@@ -24,7 +24,7 @@ export function GroupCreate() {
       </Typography>
       <GroupForm
         onSubmit={mutate}
-        isLoading={isLoading}
+        isLoading={isPending}
         onCancel={() => navigate("/")}
       />
     </>

@@ -26,7 +26,7 @@ export function GroupQuiz() {
   const { data: group } = useGetGroup({ groupId });
   const { data: fetchedTags } = useGetTags({ groupId });
   const [tagNames, setTagNames] = useState<string[]>([]);
-  const { mutate, isLoading } = useGenerateQuizCard({
+  const { mutate, isPending } = useGenerateQuizCard({
     groupId,
     tagNames,
     successCallback: (card) => {
@@ -82,8 +82,8 @@ export function GroupQuiz() {
       </Card>
       <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
         <Button variant="contained" onClick={() => mutate()}>
-          {isLoading && <CircularProgress />}
-          {!isLoading && <>{fetchedCard ? "Next Card" : "Get Card"}</>}
+          {isPending && <CircularProgress />}
+          {!isPending && <>{fetchedCard ? "Next Card" : "Get Card"}</>}
         </Button>
       </Box>
     </>
