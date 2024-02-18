@@ -54,7 +54,7 @@ export function GroupQuiz() {
           <TextField {...params} label="Tags" sx={{ margin: "0 0 1rem" }} />
         )}
         value={tagNames}
-        onChange={(event, newValue) => {
+        onChange={(_, newValue) => {
           setTagNames(newValue);
         }}
       />

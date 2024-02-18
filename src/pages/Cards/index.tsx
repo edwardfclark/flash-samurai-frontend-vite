@@ -27,8 +27,8 @@ export function Cards() {
     isFetching,
   } = useGetCards({
     groupId,
-    page: paginationModel.page as unknown as string,
-    limit: paginationModel.pageSize as unknown as string,
+    page: paginationModel.page?.toString(),
+    limit: paginationModel.pageSize?.toString(),
   });
   const showLoading = isLoading || isFetching;
   const data = result?.data || [];
