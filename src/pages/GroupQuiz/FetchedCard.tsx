@@ -64,7 +64,7 @@ export function FetchedCard({
           }}
         >
           {fetchedCard.tags.map((tag) => (
-            <Tooltip title={tag?.description} arrow>
+            <Tooltip title={tag?.description} arrow key={tag._id}>
               <Chip label={tag.name} size="small" />
             </Tooltip>
           ))}

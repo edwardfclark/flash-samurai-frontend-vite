@@ -71,10 +71,10 @@ export function GroupQuiz() {
           ) : (
             <>
               <Typography variant="body1">
-                Fetch a card by clicking the 'Get Card' button below. You can
-                limit the fetched cards to specific tags by using the
-                Autocomplete above. If left blank, no limits will be placed on
-                the allowed cards.
+                Fetch a card by clicking the &lsquo;Get Card&rsquo; button
+                below. You can limit the fetched cards to specific tags by using
+                the Autocomplete above. If left blank, no limits will be placed
+                on the allowed cards.
               </Typography>
             </>
           )}

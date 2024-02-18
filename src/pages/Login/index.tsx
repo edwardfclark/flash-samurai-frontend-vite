@@ -60,7 +60,6 @@ export function Login() {
             onChange={(e) =>
               setCredentials({ ...credentials, username: e.target.value })
             }
-            autoFocus
           />
           <TextField
             margin="normal"
