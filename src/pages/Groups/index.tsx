@@ -1,12 +1,12 @@
 import { GridColDef, GridRowsProp, DataGrid } from "@mui/x-data-grid";
 import { Typography, Button, Box, CircularProgress } from "@mui/material";
 import { CreateNewFolder } from "@mui/icons-material";
-import { useGetGroups } from "../../hooks/Group/useGetGroups";
-import { Actions } from "./Actions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGetGroups } from "../../hooks/Group/useGetGroups";
 import { IGroup } from "../../types/Groups";
 import { EmptyTableOverlay } from "../../components/EmptyTableOverlay";
+import { Actions } from "./Actions";
 
 export function Groups() {
   const navigate = useNavigate();

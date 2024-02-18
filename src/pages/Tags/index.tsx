@@ -7,8 +7,8 @@ import { useGetGroup } from "../../hooks/Group/useGetGroup";
 import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { useGetTags } from "../../hooks/Tag/useGetTags";
 import { ITag } from "../../types/Tags";
-import { Actions } from "./Actions";
 import { EmptyTableOverlay } from "../../components/EmptyTableOverlay";
+import { Actions } from "./Actions";
 
 export function Tags() {
   const navigate = useNavigate();

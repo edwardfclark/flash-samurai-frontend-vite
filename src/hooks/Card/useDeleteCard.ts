@@ -17,7 +17,6 @@ export function useDeleteCard({
 }) {
   const queryClient = useQueryClient();
 
-  console.log({ groupId, page, limit });
   return useMutation({
     mutationFn: () =>
       axiosClient.delete(`/api/card/${cardId}`).then((res) => res.data),

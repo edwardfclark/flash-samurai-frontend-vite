@@ -37,7 +37,8 @@ export function CardForm({
   const { handleSubmit, control, watch, setValue } = useForm<ICardForm>({
     defaultValues,
   });
-  const selectedTags = watch("tags", []);
+  const selectedTags = watch("tags");
+
   const onSubmit: SubmitHandler<ICardForm> = (data: ICardForm) =>
     externalOnSubmit(data);
 

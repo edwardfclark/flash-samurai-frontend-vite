@@ -18,6 +18,7 @@ export function CardUpdate() {
       navigate(`/groups/${groupId}/cards`);
     },
   });
+
   return (
     <>
       <Breadcrumbs
