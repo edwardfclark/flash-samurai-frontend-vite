@@ -49,6 +49,7 @@ export function Cards() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "answer",
@@ -56,6 +57,7 @@ export function Cards() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "reference",
@@ -63,6 +65,7 @@ export function Cards() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "tags",
@@ -70,6 +73,7 @@ export function Cards() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "actions",

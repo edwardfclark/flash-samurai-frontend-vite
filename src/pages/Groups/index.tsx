@@ -40,6 +40,7 @@ export function Groups() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "owner",
@@ -48,6 +49,7 @@ export function Groups() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "description",
@@ -55,6 +57,7 @@ export function Groups() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "actions",

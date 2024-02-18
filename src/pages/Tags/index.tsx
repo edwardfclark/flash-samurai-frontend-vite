@@ -33,6 +33,7 @@ export function Tags() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "description",
@@ -40,6 +41,7 @@ export function Tags() {
       flex: 1,
       sortable: false,
       filterable: false,
+      disableColumnMenu: true,
     },
     {
       field: "actions",
