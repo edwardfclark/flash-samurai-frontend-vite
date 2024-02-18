@@ -1,4 +1,3 @@
-import React from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -22,7 +21,7 @@ function App() {
   });
 
   return (
-    <React.StrictMode>
+    <>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
@@ -33,7 +32,7 @@ function App() {
           </SnackbarProvider>
         </ThemeProvider>
       </QueryClientProvider>
-    </React.StrictMode>
+    </>
   );
 }
 
