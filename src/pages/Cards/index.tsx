@@ -8,6 +8,7 @@ import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { useGetCards } from "../../hooks/Card/useGetCards";
 import { ICard } from "../../types/Cards";
 import { Actions } from "./Actions";
+import { EmptyTableOverlay } from "../../components/EmptyTableOverlay";
 
 export function Cards() {
   const navigate = useNavigate();
@@ -148,6 +149,12 @@ export function Cards() {
               setPaginationModel(model);
             }}
             disableRowSelectionOnClick
+            autoHeight
+            slots={{
+              noRowsOverlay: () => (
+                <EmptyTableOverlay text="No Cards available for display" />
+              ),
+            }}
           />
         </Box>
       )}

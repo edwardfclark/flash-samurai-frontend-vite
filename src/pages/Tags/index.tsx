@@ -8,6 +8,7 @@ import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { useGetTags } from "../../hooks/Tag/useGetTags";
 import { ITag } from "../../types/Tags";
 import { Actions } from "./Actions";
+import { EmptyTableOverlay } from "../../components/EmptyTableOverlay";
 
 export function Tags() {
   const navigate = useNavigate();
@@ -107,6 +108,12 @@ export function Tags() {
             rowCount={total}
             loading={isLoading}
             disableRowSelectionOnClick
+            autoHeight
+            slots={{
+              noRowsOverlay: () => (
+                <EmptyTableOverlay text="No tags available for display" />
+              ),
+            }}
           />
         </>
       )}

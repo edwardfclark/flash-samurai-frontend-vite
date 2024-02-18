@@ -6,6 +6,7 @@ import { Actions } from "./Actions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IGroup } from "../../types/Groups";
+import { EmptyTableOverlay } from "../../components/EmptyTableOverlay";
 
 export function Groups() {
   const navigate = useNavigate();
@@ -120,6 +121,12 @@ export function Groups() {
             paginationModel={paginationModel}
             onPaginationModelChange={setPaginationModel}
             disableRowSelectionOnClick
+            autoHeight
+            slots={{
+              noRowsOverlay: () => (
+                <EmptyTableOverlay text="No Decks available for display" />
+              ),
+            }}
           />
         </>
       )}
