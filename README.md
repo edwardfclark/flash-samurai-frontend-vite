@@ -2,6 +2,8 @@
 
 This is the new frontend for the Flash Samurai project, configured to use Vite instead of Create React App.
 
+The original frontend for this project can be found at [flash-samurai-frontend-cra](https://github.com/edwardfclark/flash-samurai-frontend-cra).
+
 ## Setup
 
 1. Make sure `flash-samurai-backend` is running.
