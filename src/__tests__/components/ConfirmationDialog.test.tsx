@@ -99,3 +99,20 @@ test("it calls the onConfirm function when the confirm button is clicked", async
 
   confirmationDialog.unmount();
 });
+
+test("it does not render if isOpen is false", async () => {
+  const confirmationDialog = render(
+    <ConfirmationDialog
+      isOpen={false}
+      onClose={() => {}}
+      onConfirm={() => {}}
+      title="Are you sure?"
+    />,
+  );
+
+  const { queryByTestId } = confirmationDialog;
+
+  expect(queryByTestId("confirmation-dialog-wrapper")).not.toBeTruthy();
+
+  confirmationDialog.unmount();
+});

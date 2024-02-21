@@ -26,7 +26,11 @@ export function ConfirmationDialog({
   isLoading,
 }: ComponentProps) {
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog
+      open={isOpen}
+      onClose={onClose}
+      data-testid="confirmation-dialog-wrapper"
+    >
       <DialogTitle>{title}</DialogTitle>
       {description && (
         <DialogContent>
