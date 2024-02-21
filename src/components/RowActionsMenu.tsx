@@ -21,12 +21,20 @@ export function RowActionsMenu({ options }: ComponentProps) {
   }
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row-reverse", width: "100%" }}>
-      <IconButton size="small" onClick={handleActionsOpen}>
+    <Box
+      sx={{ display: "flex", flexDirection: "row-reverse", width: "100%" }}
+      data-testid="row-actions-menu-wrapper"
+    >
+      <IconButton
+        size="small"
+        onClick={handleActionsOpen}
+        data-testid="row-actions-menu-button"
+      >
         <MoreVert />
       </IconButton>
       <Menu
         id="menu-appbar"
+        data-testid="menu-appbar"
         anchorEl={anchorElNav}
         anchorOrigin={{
           vertical: "bottom",
@@ -40,8 +48,12 @@ export function RowActionsMenu({ options }: ComponentProps) {
         open={Boolean(anchorElNav)}
         onClose={handleActionsClose}
       >
-        {options.map((item) => (
-          <MenuItem key={item.name} onClick={item.action}>
+        {options.map((item, idx) => (
+          <MenuItem
+            key={item.name}
+            onClick={item.action}
+            data-testid={`row-actions-menu-item${idx}`}
+          >
             {item.name}
           </MenuItem>
         ))}
