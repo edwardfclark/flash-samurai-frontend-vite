@@ -1,4 +1,4 @@
-import { expect, test, vi } from "vitest";
+import { expect, test } from "vitest";
 import { render } from "@testing-library/react";
 import { EmptyTableOverlay } from "../../components/EmptyTableOverlay";
 import { GridColDef, GridRowsProp, DataGrid } from "@mui/x-data-grid";
