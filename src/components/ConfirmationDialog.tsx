@@ -34,10 +34,18 @@ export function ConfirmationDialog({
         </DialogContent>
       )}
       <DialogActions>
-        <Button onClick={onClose} variant="outlined">
+        <Button
+          onClick={onClose}
+          variant="outlined"
+          data-testid="confirmation-dialog-cancel-button"
+        >
           Cancel
         </Button>
-        <Button onClick={onConfirm} variant="contained">
+        <Button
+          onClick={onConfirm}
+          variant="contained"
+          data-testid="confirmation-dialog-confirm-button"
+        >
           {isLoading ? (
             <CircularProgress
               size={24}

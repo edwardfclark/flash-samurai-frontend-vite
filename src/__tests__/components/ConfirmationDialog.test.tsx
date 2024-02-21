@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import { render } from "@testing-library/react";
 import { ConfirmationDialog } from "../../components/ConfirmationDialog";
 
@@ -56,6 +56,46 @@ test("shows a loading spinner if the request is loading", async () => {
   const { getByTestId } = confirmationDialog;
 
   expect(getByTestId("confirmation-dialog-loading-spinner")).toBeTruthy();
+
+  confirmationDialog.unmount();
+});
+
+test("it calls the onClose function when the cancel button is clicked", async () => {
+  const onClose = vi.fn();
+  const confirmationDialog = render(
+    <ConfirmationDialog
+      isOpen={true}
+      onClose={onClose}
+      onConfirm={() => {}}
+      title="Are you sure?"
+    />,
+  );
+
+  const { getByTestId } = confirmationDialog;
+
+  getByTestId("confirmation-dialog-cancel-button").click();
+
+  expect(onClose).toHaveBeenCalled();
+
+  confirmationDialog.unmount();
+});
+
+test("it calls the onConfirm function when the confirm button is clicked", async () => {
+  const onConfirm = vi.fn();
+  const confirmationDialog = render(
+    <ConfirmationDialog
+      isOpen={true}
+      onClose={() => {}}
+      onConfirm={onConfirm}
+      title="Are you sure?"
+    />,
+  );
+
+  const { getByTestId } = confirmationDialog;
+
+  getByTestId("confirmation-dialog-confirm-button").click();
+
+  expect(onConfirm).toHaveBeenCalled();
 
   confirmationDialog.unmount();
 });
