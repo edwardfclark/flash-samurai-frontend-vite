@@ -39,7 +39,11 @@ export function ConfirmationDialog({
         </Button>
         <Button onClick={onConfirm} variant="contained">
           {isLoading ? (
-            <CircularProgress size={24} color="inherit" />
+            <CircularProgress
+              size={24}
+              color="inherit"
+              data-testid="confirmation-dialog-loading-spinner"
+            />
           ) : (
             "Confirm"
           )}
