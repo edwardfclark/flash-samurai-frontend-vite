@@ -111,7 +111,7 @@ export function CardForm({
                 options={fetchedTags?.data?.map((tag: ITag) => tag.name) ?? []}
                 renderInput={(params) => <TextField {...params} label="Tags" />}
                 value={selectedTags?.map((tag) => tag.name) ?? []}
-                onChange={(e, values) => {
+                onChange={(_, values) => {
                   const tags =
                     fetchedTags?.data?.filter((tag: ITag) =>
                       values?.includes(tag.name),
