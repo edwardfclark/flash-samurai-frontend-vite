@@ -132,10 +132,20 @@ export function CardForm({
               justifyContent: "flex-end",
             }}
           >
-            <Button variant="outlined" onClick={onCancel}>
+            <Button
+              variant="outlined"
+              onClick={onCancel}
+              data-testid="card-form-cancel-button"
+            >
               Cancel
             </Button>
-            <Button type="submit" variant="contained" disabled={isLoading}>
+            <Button
+              type="submit"
+              name="submit"
+              variant="contained"
+              disabled={isLoading}
+              data-testid="card-form-submit-button"
+            >
               Submit
             </Button>
           </Box>
