@@ -61,6 +61,7 @@ export function CardForm({
               <TextField
                 {...field}
                 label="Question"
+                data-testid="card-form-question"
                 sx={{ margin: "0 0 1rem" }}
                 multiline
                 rows={3}
@@ -75,6 +76,7 @@ export function CardForm({
               <TextField
                 {...field}
                 label="Answer"
+                data-testid="card-form-answer"
                 sx={{ margin: "0 0 1rem" }}
                 multiline
                 rows={3}
@@ -89,6 +91,7 @@ export function CardForm({
               <TextField
                 {...field}
                 label="Reference"
+                data-testid="card-form-reference"
                 sx={{ margin: "0 0 1rem" }}
               />
             )}
@@ -115,6 +118,7 @@ export function CardForm({
                     ) ?? [];
                   setValue("tags", tags, { shouldDirty: true });
                 }}
+                data-testid="card-form-tags-autocomplete"
               />
             </Box>
             <Button endIcon={<Label />} onClick={() => setIsTagFormOpen(true)}>
