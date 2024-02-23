@@ -81,3 +81,29 @@ test("it fires the onSubmit function when the form is submitted", async () => {
 
   groupForm.unmount();
 });
+
+test("it calls the onCancel function when the cancel button is clicked", async () => {
+  const mockOnCancel = vi.fn();
+  const groupForm = render(
+    <QueryClientProvider client={queryClient}>
+      <GroupForm
+        defaultValues={{
+          name: "test name",
+          description: "test description",
+        }}
+        onSubmit={() => {}}
+        onCancel={mockOnCancel}
+        isLoading={false}
+      />
+    </QueryClientProvider>,
+  );
+  const { getByTestId } = groupForm;
+
+  getByTestId("group-form-cancel-button").click();
+
+  await waitFor(() => {
+    expect(mockOnCancel).toHaveBeenCalled();
+  });
+
+  groupForm.unmount();
+});
