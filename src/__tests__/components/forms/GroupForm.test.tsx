@@ -32,3 +32,26 @@ test("it autofills with default values", async () => {
   );
   groupForm.unmount();
 });
+
+test("the submit button is disabled if the form is loading", async () => {
+  const groupForm = render(
+    <QueryClientProvider client={queryClient}>
+      <GroupForm
+        defaultValues={{
+          name: "test name",
+          description: "test description",
+        }}
+        onSubmit={() => {}}
+        onCancel={() => {}}
+        isLoading={true}
+      />
+    </QueryClientProvider>,
+  );
+  const { getByTestId } = groupForm;
+
+  expect(
+    getByTestId("group-form-submit-button").getAttribute("disabled"),
+  ).not.toBe(null);
+
+  groupForm.unmount();
+});

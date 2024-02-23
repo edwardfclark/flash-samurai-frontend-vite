@@ -58,10 +58,19 @@ export function GroupForm({
             justifyContent: "flex-end",
           }}
         >
-          <Button variant="outlined" onClick={onCancel}>
+          <Button
+            variant="outlined"
+            onClick={onCancel}
+            data-testid="group-form-cancel-button"
+          >
             Cancel
           </Button>
-          <Button type="submit" variant="contained" disabled={isLoading}>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isLoading}
+            data-testid="group-form-submit-button"
+          >
             Submit
           </Button>
         </Box>
