@@ -28,7 +28,12 @@ export function GroupForm({
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <TextField {...field} label="Name" sx={{ margin: "0 0 1rem" }} />
+            <TextField
+              {...field}
+              label="Name"
+              sx={{ margin: "0 0 1rem" }}
+              data-testid="group-form-name"
+            />
           )}
         />
         <Controller
@@ -40,6 +45,7 @@ export function GroupForm({
               {...field}
               label="Description"
               sx={{ margin: "0 0 1rem" }}
+              data-testid="group-form-description"
               multiline
               rows={3}
             />
