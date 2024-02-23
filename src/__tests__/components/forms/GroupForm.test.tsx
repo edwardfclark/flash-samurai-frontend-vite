@@ -1,5 +1,5 @@
 import { expect, test, vi } from "vitest";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { GroupForm } from "../../../components/forms/GroupForm";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -52,6 +52,32 @@ test("the submit button is disabled if the form is loading", async () => {
   expect(
     getByTestId("group-form-submit-button").getAttribute("disabled"),
   ).not.toBe(null);
+
+  groupForm.unmount();
+});
+
+test("it fires the onSubmit function when the form is submitted", async () => {
+  const mockOnSubmit = vi.fn();
+  const groupForm = render(
+    <QueryClientProvider client={queryClient}>
+      <GroupForm
+        defaultValues={{
+          name: "test name",
+          description: "test description",
+        }}
+        onSubmit={mockOnSubmit}
+        onCancel={() => {}}
+        isLoading={false}
+      />
+    </QueryClientProvider>,
+  );
+  const { getByTestId } = groupForm;
+
+  getByTestId("group-form-submit-button").click();
+
+  await waitFor(() => {
+    expect(mockOnSubmit).toHaveBeenCalled();
+  });
 
   groupForm.unmount();
 });
