@@ -18,7 +18,7 @@ test("it autofills with default values", async () => {
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
           tags: [
             {
               _id: "test",
