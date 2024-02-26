@@ -47,8 +47,7 @@ export function CardForm({
   const selectedTags = watch("tags");
 
   const onSubmit: SubmitHandler<ICardForm> = (data: ICardForm) =>
-    console.log(data);
-  // externalOnSubmit(data);
+    externalOnSubmit(data);
 
   const { mutate, isPending: createTagLoading } = useCreateTag({
     groupId,
@@ -56,8 +55,6 @@ export function CardForm({
       setIsTagFormOpen(false);
     },
   });
-
-  console.log("FORM", form);
 
   return (
     <FormProvider {...form}>
