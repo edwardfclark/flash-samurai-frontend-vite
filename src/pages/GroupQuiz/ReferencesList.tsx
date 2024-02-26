@@ -12,6 +12,7 @@ function formatYoutubeLink(url?: string, timestampSeconds?: string) {
 
 export function ReferencesList({ references }: { references: IReference[] }) {
   if (references.length <= 0) return null;
+
   return (
     <>
       <Typography variant="h6">References:</Typography>
@@ -22,7 +23,7 @@ export function ReferencesList({ references }: { references: IReference[] }) {
               <Typography key={ref?._id || idx}>{ref.text}</Typography>
             )}
             {ref.type === "link" && Boolean(ref?.url) && (
-              <Link href={ref?.url} key={ref?._id || idx}>
+              <Link href={ref?.url} key={ref?._id || idx} target="_blank">
                 {ref?.text || ref?.url}
               </Link>
             )}
@@ -30,6 +31,7 @@ export function ReferencesList({ references }: { references: IReference[] }) {
               <Link
                 href={formatYoutubeLink(ref?.url, ref?.timestampSeconds)}
                 key={ref?._id || idx}
+                target="_blank"
               >
                 {ref?.text || ref?.url}
               </Link>

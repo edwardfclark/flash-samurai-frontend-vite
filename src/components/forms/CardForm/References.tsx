@@ -54,7 +54,6 @@ export function References() {
             }}
             key={field.id}
           >
-            {/* TODO use something else */}
             <Controller
               name={`references.${idx}.type`}
               control={control}
@@ -80,7 +79,12 @@ export function References() {
                     control={control}
                     rules={{ required: false }}
                     render={({ field }) => (
-                      <TextField label="Text" fullWidth {...field} />
+                      <TextField
+                        label="Text"
+                        data-testid={`card-form-references-${idx}-text`}
+                        fullWidth
+                        {...field}
+                      />
                     )}
                   />
                 </Box>
@@ -92,7 +96,12 @@ export function References() {
                     control={control}
                     rules={{ required: false }}
                     render={({ field }) => (
-                      <TextField label="Text" fullWidth {...field} />
+                      <TextField
+                        label="Text"
+                        data-testid={`card-form-references-${idx}-text`}
+                        fullWidth
+                        {...field}
+                      />
                     )}
                   />
                   <Controller
@@ -100,7 +109,12 @@ export function References() {
                     control={control}
                     rules={{ required: false }}
                     render={({ field }) => (
-                      <TextField label="URL" fullWidth {...field} />
+                      <TextField
+                        label="URL"
+                        data-testid={`card-form-references-${idx}-url`}
+                        fullWidth
+                        {...field}
+                      />
                     )}
                   />
                 </Box>
@@ -119,7 +133,12 @@ export function References() {
                     control={control}
                     rules={{ required: false }}
                     render={({ field }) => (
-                      <TextField label="Text" fullWidth {...field} />
+                      <TextField
+                        label="Text"
+                        data-testid={`card-form-references-${idx}-text`}
+                        fullWidth
+                        {...field}
+                      />
                     )}
                   />
                   <Controller
@@ -127,7 +146,12 @@ export function References() {
                     control={control}
                     rules={{ required: false }}
                     render={({ field }) => (
-                      <TextField label="URL" fullWidth {...field} />
+                      <TextField
+                        label="URL"
+                        data-testid={`card-form-references-${idx}-url`}
+                        fullWidth
+                        {...field}
+                      />
                     )}
                   />
                   <Controller
@@ -137,6 +161,7 @@ export function References() {
                     render={({ field }) => (
                       <TextField
                         label="Video Timestamp"
+                        data-testid={`card-form-references-${idx}-timestamp`}
                         type="number"
                         fullWidth
                         {...field}

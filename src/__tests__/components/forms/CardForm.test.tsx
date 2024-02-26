@@ -41,7 +41,7 @@ test("it autofills with default values", async () => {
   );
   expect(getByTestId("card-form-question").innerHTML).includes("test question");
   expect(getByTestId("card-form-answer").innerHTML).includes("test answer");
-  expect(getByTestId("card-form-reference").innerHTML).includes(
+  expect(getByTestId("card-form-references-0-text").innerHTML).includes(
     "test reference",
   );
 
