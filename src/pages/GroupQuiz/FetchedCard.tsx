@@ -7,6 +7,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { ICard } from "../../types/Cards";
+import { ReferencesList } from "./ReferencesList";
 
 interface ComponentProps {
   fetchedCard: ICard;
@@ -48,8 +49,8 @@ export function FetchedCard({
           >
             {fetchedCard.answer}
           </Typography>
-          {!!fetchedCard?.reference && (
-            <Typography variant="caption">{fetchedCard.reference}</Typography>
+          {Boolean(fetchedCard?.references?.length) && (
+            <ReferencesList references={fetchedCard?.references ?? []} />
           )}
         </>
       )}

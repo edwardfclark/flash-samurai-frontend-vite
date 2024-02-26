@@ -38,9 +38,6 @@ export function References() {
           <Typography variant="body2" color="textSecondary">
             No references
           </Typography>
-          <Button onClick={() => append({ type: "text", text: "" })}>
-            Add Reference
-          </Button>
         </Box>
       )}
       {fields.map((field, idx) => {
@@ -134,11 +131,16 @@ export function References() {
                     )}
                   />
                   <Controller
-                    name={`references.${idx}.videoTimestamp`}
+                    name={`references.${idx}.timestampSeconds`}
                     control={control}
                     rules={{ required: false }}
                     render={({ field }) => (
-                      <TextField label="Video Timestamp" fullWidth {...field} />
+                      <TextField
+                        label="Video Timestamp"
+                        type="number"
+                        fullWidth
+                        {...field}
+                      />
                     )}
                   />
                 </Box>
