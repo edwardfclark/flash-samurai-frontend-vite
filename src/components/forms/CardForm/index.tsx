@@ -16,12 +16,12 @@ import {
   SubmitHandler,
   FormProvider,
 } from "react-hook-form";
-import { ICardForm } from "../../types/Cards";
-import { useGetTags } from "../../hooks/Tag/useGetTags";
-import { useCreateTag } from "../../hooks/Tag/useCreateTag";
-import { ITag } from "../../types/Tags";
-import { TagForm } from "./TagForm";
-import { References } from "./fields/References";
+import { ICardForm } from "../../../types/Cards";
+import { useGetTags } from "../../../hooks/Tag/useGetTags";
+import { useCreateTag } from "../../../hooks/Tag/useCreateTag";
+import { ITag } from "../../../types/Tags";
+import { TagForm } from "../TagForm";
+import { References } from "./References";
 
 interface CardFormProps {
   defaultValues?: ICardForm;
