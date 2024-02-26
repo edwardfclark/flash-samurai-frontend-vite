@@ -55,7 +55,8 @@ test("the submit button is disabled if the form is loading", async () => {
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
+
           tags: [
             {
               _id: "test",
@@ -88,7 +89,7 @@ test("it fires the onSubmit function when the form is submitted", async () => {
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
           tags: [
             {
               _id: "test",
@@ -125,7 +126,7 @@ test("it fires the onCancel function when the cancel button is clicked", async (
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
           tags: [
             {
               _id: "test",

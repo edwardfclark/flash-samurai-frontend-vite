@@ -10,12 +10,18 @@ import {
 } from "@mui/material";
 import { Label } from "@mui/icons-material";
 import { useState } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  FormProvider,
+} from "react-hook-form";
 import { ICardForm } from "../../types/Cards";
 import { useGetTags } from "../../hooks/Tag/useGetTags";
 import { useCreateTag } from "../../hooks/Tag/useCreateTag";
 import { ITag } from "../../types/Tags";
 import { TagForm } from "./TagForm";
+import { References } from "./fields/References";
 
 interface CardFormProps {
   defaultValues?: ICardForm;
@@ -34,13 +40,15 @@ export function CardForm({
 }: CardFormProps) {
   const [isTagFormOpen, setIsTagFormOpen] = useState(false);
   const { data: fetchedTags } = useGetTags({ groupId });
-  const { handleSubmit, control, watch, setValue } = useForm<ICardForm>({
+  const form = useForm<ICardForm>({
     defaultValues,
   });
+  const { handleSubmit, control, watch, setValue } = form;
   const selectedTags = watch("tags");
 
   const onSubmit: SubmitHandler<ICardForm> = (data: ICardForm) =>
-    externalOnSubmit(data);
+    console.log(data);
+  // externalOnSubmit(data);
 
   const { mutate, isPending: createTagLoading } = useCreateTag({
     groupId,
@@ -49,8 +57,10 @@ export function CardForm({
     },
   });
 
+  console.log("FORM", form);
+
   return (
-    <>
+    <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack>
           <Controller
@@ -96,6 +106,7 @@ export function CardForm({
               />
             )}
           />
+          <References />
           <Box
             sx={{
               display: "flex",
@@ -163,6 +174,6 @@ export function CardForm({
           </DialogContent>
         </Dialog>
       </form>
-    </>
+    </FormProvider>
   );
 }

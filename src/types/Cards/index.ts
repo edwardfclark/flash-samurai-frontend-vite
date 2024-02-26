@@ -22,5 +22,6 @@ export interface ICard {
   question: string;
   answer: string;
   reference?: string;
+  references?: IReference[];
   tags?: ITag[];
 }
