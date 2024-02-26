@@ -59,7 +59,7 @@ export function CardForm({
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack>
+        <Stack sx={{ mb: "2rem" }}>
           <Controller
             name="question"
             control={control}
@@ -90,20 +90,6 @@ export function CardForm({
               />
             )}
           />
-          <Controller
-            name="reference"
-            control={control}
-            rules={{ required: false }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Reference"
-                data-testid="card-form-reference"
-                sx={{ margin: "0 0 1rem" }}
-              />
-            )}
-          />
-          <References />
           <Box
             sx={{
               display: "flex",
@@ -133,6 +119,7 @@ export function CardForm({
               Add
             </Button>
           </Box>
+          <References />
           <Box
             sx={{
               display: "flex",

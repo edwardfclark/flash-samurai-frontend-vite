@@ -1,15 +1,48 @@
 import { useFormContext, useFieldArray, Controller } from "react-hook-form";
-import { Box, MenuItem, Button, TextField } from "@mui/material";
+import {
+  Box,
+  MenuItem,
+  Button,
+  TextField,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { DeleteRounded, AddLinkRounded } from "@mui/icons-material";
 import { ICardForm } from "../../../types/Cards";
 
 export function References() {
   const { watch, control } = useFormContext<ICardForm>();
-  const { fields, append } = useFieldArray({ name: "references" });
-
-  console.log(fields);
+  const { fields, append, remove } = useFieldArray({ name: "references" });
 
   return (
     <Box sx={{ mb: "1rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
+          mb: "1rem",
+        }}
+      >
+        <Typography variant="h6">References</Typography>
+        <Button
+          endIcon={<AddLinkRounded />}
+          onClick={() => append({ type: "text", text: "" })}
+        >
+          Add
+        </Button>
+      </Box>
+      {fields.length === 0 && (
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography variant="body2" color="textSecondary">
+            No references
+          </Typography>
+          <Button onClick={() => append({ type: "text", text: "" })}>
+            Add Reference
+          </Button>
+        </Box>
+      )}
       {fields.map((field, idx) => {
         const current = watch(`references.${idx}`);
         const { type } = current;
@@ -17,9 +50,9 @@ export function References() {
         return (
           <Box
             sx={{
-              mb: "0.5rem",
+              mb: "1rem",
               display: "grid",
-              gridTemplateColumns: "1fr 2fr",
+              gridTemplateColumns: "1fr 2fr auto",
               gap: "1rem",
             }}
             key={field.id}
@@ -32,7 +65,7 @@ export function References() {
               render={({ field }) => (
                 <TextField
                   select
-                  label="Reference Type"
+                  label="Type"
                   data-testid={`card-form-references-${idx}-type`}
                   {...field}
                 >
@@ -42,17 +75,83 @@ export function References() {
                 </TextField>
               )}
             />
-            <Box>
-              {type === "text" && "text"}
-              {type === "link" && "link"}
-              {type === "youtube" && "youtube"}
-            </Box>
+            <>
+              {type === "text" && (
+                <Box>
+                  <Controller
+                    name={`references.${idx}.text`}
+                    control={control}
+                    rules={{ required: false }}
+                    render={({ field }) => (
+                      <TextField label="Text" fullWidth {...field} />
+                    )}
+                  />
+                </Box>
+              )}
+              {type === "link" && (
+                <Box sx={{ display: "grid", gap: "0.5rem" }}>
+                  <Controller
+                    name={`references.${idx}.text`}
+                    control={control}
+                    rules={{ required: false }}
+                    render={({ field }) => (
+                      <TextField label="Text" fullWidth {...field} />
+                    )}
+                  />
+                  <Controller
+                    name={`references.${idx}.url`}
+                    control={control}
+                    rules={{ required: false }}
+                    render={({ field }) => (
+                      <TextField label="URL" fullWidth {...field} />
+                    )}
+                  />
+                </Box>
+              )}
+
+              {type === "youtube" && (
+                <Box
+                  sx={{
+                    display: "grid",
+                    gap: "0.5rem",
+                    gridTemplateColumns: "1fr 1fr",
+                  }}
+                >
+                  <Controller
+                    name={`references.${idx}.text`}
+                    control={control}
+                    rules={{ required: false }}
+                    render={({ field }) => (
+                      <TextField label="Text" fullWidth {...field} />
+                    )}
+                  />
+                  <Controller
+                    name={`references.${idx}.url`}
+                    control={control}
+                    rules={{ required: false }}
+                    render={({ field }) => (
+                      <TextField label="URL" fullWidth {...field} />
+                    )}
+                  />
+                  <Controller
+                    name={`references.${idx}.videoTimestamp`}
+                    control={control}
+                    rules={{ required: false }}
+                    render={({ field }) => (
+                      <TextField label="Video Timestamp" fullWidth {...field} />
+                    )}
+                  />
+                </Box>
+              )}
+              <Box>
+                <IconButton size="small" onClick={() => remove(idx)}>
+                  <DeleteRounded />
+                </IconButton>
+              </Box>
+            </>
           </Box>
         );
       })}
-      <Button onClick={() => append({ type: "text", text: "" })}>
-        Add Reference
-      </Button>
     </Box>
   );
 }
