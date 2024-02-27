@@ -4,6 +4,7 @@ export interface IReference {
   type: "text" | "link" | "youtube";
   text?: string;
   url?: string;
+  videoID?: string;
   timestampSeconds?: string;
   _id?: string;
 }

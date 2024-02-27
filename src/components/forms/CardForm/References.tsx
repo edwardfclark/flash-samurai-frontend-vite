@@ -9,9 +9,10 @@ import {
 } from "@mui/material";
 import { DeleteRounded, AddLinkRounded } from "@mui/icons-material";
 import { ICardForm } from "../../../types/Cards";
+import { getYouTubeVideoIdFromUrl } from "../../../utils/youtube";
 
 export function References() {
-  const { watch, control } = useFormContext<ICardForm>();
+  const { watch, control, setValue } = useFormContext<ICardForm>();
   const { fields, append, remove } = useFieldArray({ name: "references" });
 
   return (
@@ -43,6 +44,7 @@ export function References() {
       {fields.map((field, idx) => {
         const current = watch(`references.${idx}`);
         const { type } = current;
+        console.log("CURRENT: ", current);
 
         return (
           <Box
@@ -141,19 +143,23 @@ export function References() {
                       />
                     )}
                   />
-                  <Controller
-                    name={`references.${idx}.url`}
-                    control={control}
-                    rules={{ required: false }}
-                    render={({ field }) => (
-                      <TextField
-                        label="URL"
-                        data-testid={`card-form-references-${idx}-url`}
-                        fullWidth
-                        {...field}
-                      />
-                    )}
+                  <TextField
+                    label="videoID"
+                    data-testid={`card-form-references-${idx}-videoID`}
+                    fullWidth
+                    value={current.videoID ?? ""}
+                    onChange={(e) => {
+                      const target = e.target as HTMLInputElement;
+                      const val = target?.value ?? "";
+                      const videoId = getYouTubeVideoIdFromUrl(val);
+                      setValue(`references.${idx}.videoID`, videoId, {
+                        shouldDirty: true,
+                        shouldValidate: true,
+                        shouldTouch: true,
+                      });
+                    }}
                   />
+
                   <Controller
                     name={`references.${idx}.timestampSeconds`}
                     control={control}
