@@ -115,6 +115,20 @@ test("it fires the onSubmit function when the form is submitted", async () => {
     expect(onSubmit).toHaveBeenCalled();
   });
 
+  expect(onSubmit).toHaveBeenCalledWith({
+    question: "test question",
+    answer: "test answer",
+    references: [{ type: "text", text: "test reference" }],
+    tags: [
+      {
+        _id: "test",
+        name: "test name",
+        description: "test description",
+        groupId: "test_group_id",
+      },
+    ],
+  });
+
   cardForm.unmount();
 });
 
