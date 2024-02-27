@@ -10,12 +10,18 @@ import {
 } from "@mui/material";
 import { Label } from "@mui/icons-material";
 import { useState } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { ICardForm } from "../../types/Cards";
-import { useGetTags } from "../../hooks/Tag/useGetTags";
-import { useCreateTag } from "../../hooks/Tag/useCreateTag";
-import { ITag } from "../../types/Tags";
-import { TagForm } from "./TagForm";
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  FormProvider,
+} from "react-hook-form";
+import { ICardForm } from "../../../types/Cards";
+import { useGetTags } from "../../../hooks/Tag/useGetTags";
+import { useCreateTag } from "../../../hooks/Tag/useCreateTag";
+import { ITag } from "../../../types/Tags";
+import { TagForm } from "../TagForm";
+import { References } from "./References";
 
 interface CardFormProps {
   defaultValues?: ICardForm;
@@ -34,9 +40,10 @@ export function CardForm({
 }: CardFormProps) {
   const [isTagFormOpen, setIsTagFormOpen] = useState(false);
   const { data: fetchedTags } = useGetTags({ groupId });
-  const { handleSubmit, control, watch, setValue } = useForm<ICardForm>({
+  const form = useForm<ICardForm>({
     defaultValues,
   });
+  const { handleSubmit, control, watch, setValue } = form;
   const selectedTags = watch("tags");
 
   const onSubmit: SubmitHandler<ICardForm> = (data: ICardForm) =>
@@ -50,9 +57,9 @@ export function CardForm({
   });
 
   return (
-    <>
+    <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack>
+        <Stack sx={{ mb: "2rem" }}>
           <Controller
             name="question"
             control={control}
@@ -80,19 +87,6 @@ export function CardForm({
                 sx={{ margin: "0 0 1rem" }}
                 multiline
                 rows={3}
-              />
-            )}
-          />
-          <Controller
-            name="reference"
-            control={control}
-            rules={{ required: false }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Reference"
-                data-testid="card-form-reference"
-                sx={{ margin: "0 0 1rem" }}
               />
             )}
           />
@@ -125,6 +119,7 @@ export function CardForm({
               Add
             </Button>
           </Box>
+          <References />
           <Box
             sx={{
               display: "flex",
@@ -163,6 +158,6 @@ export function CardForm({
           </DialogContent>
         </Dialog>
       </form>
-    </>
+    </FormProvider>
   );
 }

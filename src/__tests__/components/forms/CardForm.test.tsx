@@ -18,7 +18,7 @@ test("it autofills with default values", async () => {
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
           tags: [
             {
               _id: "test",
@@ -41,7 +41,7 @@ test("it autofills with default values", async () => {
   );
   expect(getByTestId("card-form-question").innerHTML).includes("test question");
   expect(getByTestId("card-form-answer").innerHTML).includes("test answer");
-  expect(getByTestId("card-form-reference").innerHTML).includes(
+  expect(getByTestId("card-form-references-0-text").innerHTML).includes(
     "test reference",
   );
 
@@ -55,7 +55,8 @@ test("the submit button is disabled if the form is loading", async () => {
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
+
           tags: [
             {
               _id: "test",
@@ -80,7 +81,7 @@ test("the submit button is disabled if the form is loading", async () => {
   cardForm.unmount();
 });
 
-test("it fires the onSubmit function when the form is submitted", async () => {
+test("it fires the onSubmit function with expected payload when the form is submitted", async () => {
   const onSubmit = vi.fn();
   const cardForm = render(
     <QueryClientProvider client={queryClient}>
@@ -88,7 +89,7 @@ test("it fires the onSubmit function when the form is submitted", async () => {
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
           tags: [
             {
               _id: "test",
@@ -114,6 +115,20 @@ test("it fires the onSubmit function when the form is submitted", async () => {
     expect(onSubmit).toHaveBeenCalled();
   });
 
+  expect(onSubmit).toHaveBeenCalledWith({
+    question: "test question",
+    answer: "test answer",
+    references: [{ type: "text", text: "test reference" }],
+    tags: [
+      {
+        _id: "test",
+        name: "test name",
+        description: "test description",
+        groupId: "test_group_id",
+      },
+    ],
+  });
+
   cardForm.unmount();
 });
 
@@ -125,7 +140,7 @@ test("it fires the onCancel function when the cancel button is clicked", async (
         defaultValues={{
           question: "test question",
           answer: "test answer",
-          reference: "test reference",
+          references: [{ type: "text", text: "test reference" }],
           tags: [
             {
               _id: "test",
@@ -150,4 +165,43 @@ test("it fires the onCancel function when the cancel button is clicked", async (
   expect(onCancel).toHaveBeenCalled();
 
   cardForm.unmount();
+});
+
+test("it will prepopulate with multiple references", async () => {
+  const cardForm = render(
+    <QueryClientProvider client={queryClient}>
+      <CardForm
+        defaultValues={{
+          question: "test question",
+          answer: "test answer",
+          references: [
+            { type: "text", text: "test reference" },
+            { type: "link", text: "test link", url: "https://test.com" },
+          ],
+          tags: [
+            {
+              _id: "test",
+              name: "test name",
+              description: "test description",
+              groupId: "test_group_id",
+            },
+          ],
+        }}
+        onSubmit={() => {}}
+        onCancel={() => {}}
+        isLoading={false}
+      />
+    </QueryClientProvider>,
+  );
+  const { getByTestId } = cardForm;
+
+  expect(getByTestId("card-form-references-0-text").innerHTML).includes(
+    "test reference",
+  );
+  expect(getByTestId("card-form-references-1-text").innerHTML).includes(
+    "test link",
+  );
+  expect(getByTestId("card-form-references-1-url").innerHTML).includes(
+    "https://test.com",
+  );
 });
