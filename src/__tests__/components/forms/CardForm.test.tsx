@@ -152,3 +152,42 @@ test("it fires the onCancel function when the cancel button is clicked", async (
 
   cardForm.unmount();
 });
+
+test("it will prepopulate with multiple references", async () => {
+  const cardForm = render(
+    <QueryClientProvider client={queryClient}>
+      <CardForm
+        defaultValues={{
+          question: "test question",
+          answer: "test answer",
+          references: [
+            { type: "text", text: "test reference" },
+            { type: "link", text: "test link", url: "https://test.com" },
+          ],
+          tags: [
+            {
+              _id: "test",
+              name: "test name",
+              description: "test description",
+              groupId: "test_group_id",
+            },
+          ],
+        }}
+        onSubmit={() => {}}
+        onCancel={() => {}}
+        isLoading={false}
+      />
+    </QueryClientProvider>,
+  );
+  const { getByTestId } = cardForm;
+
+  expect(getByTestId("card-form-references-0-text").innerHTML).includes(
+    "test reference",
+  );
+  expect(getByTestId("card-form-references-1-text").innerHTML).includes(
+    "test link",
+  );
+  expect(getByTestId("card-form-references-1-url").innerHTML).includes(
+    "https://test.com",
+  );
+});
