@@ -81,7 +81,7 @@ test("the submit button is disabled if the form is loading", async () => {
   cardForm.unmount();
 });
 
-test("it fires the onSubmit function when the form is submitted", async () => {
+test("it fires the onSubmit function with expected payload when the form is submitted", async () => {
   const onSubmit = vi.fn();
   const cardForm = render(
     <QueryClientProvider client={queryClient}>
