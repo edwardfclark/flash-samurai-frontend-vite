@@ -74,3 +74,24 @@ test("it fetches cards", async () => {
 
   unmount();
 });
+
+test("it returns an error if the group ID is not provided", async () => {
+  const { result, unmount } = renderHook(
+    () => useGetCards({ page: "0", limit: "5" }),
+    {
+      wrapper: ({ children }) => (
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      ),
+    },
+  );
+
+  await waitFor(() => expect(result.current.isError).toBe(true));
+
+  expect(result?.current?.error?.toString?.()).includes(
+    "Cannot fetch cards without a group ID",
+  );
+
+  unmount();
+});
