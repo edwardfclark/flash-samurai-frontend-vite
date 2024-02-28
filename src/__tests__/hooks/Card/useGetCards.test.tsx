@@ -1,8 +1,8 @@
 import { expect, test, afterEach, beforeAll } from "vitest";
 import { renderHook, waitFor, cleanup } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useGetCards } from "../../hooks/Card/useGetCards";
-import { axiosClient } from "../../services";
+import { useGetCards } from "../../../hooks/Card/useGetCards";
+import { axiosClient } from "../../../services";
 import MockAdapter from "axios-mock-adapter";
 
 const TEST_ID = "test";

@@ -1,7 +1,7 @@
 export function getYouTubeVideoIdFromUrl(urlOrId: string): string | undefined {
   const isIdRegex = /^[^#&?/]+$/;
   const urlRegex =
-    /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|&v(?:i)?=))([^#&?]+).*/;
+    /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/|e\/)|(?:(?:watch)?\?v(?:i)?=|&v(?:i)?=))([^#&?]+).*/;
 
   if (isIdRegex.test(urlOrId)) {
     // argument is already an ID
