@@ -44,7 +44,6 @@ export function References() {
       {fields.map((field, idx) => {
         const current = watch(`references.${idx}`);
         const { type } = current;
-        console.log("CURRENT: ", current);
 
         return (
           <Box
