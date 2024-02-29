@@ -28,7 +28,12 @@ export function TagForm({
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <TextField {...field} label="Name" sx={{ margin: "0 0 1rem" }} />
+            <TextField
+              {...field}
+              label="Name"
+              sx={{ margin: "0 0 1rem" }}
+              data-testid="tag-form-name"
+            />
           )}
         />
         <Controller
@@ -40,6 +45,7 @@ export function TagForm({
               {...field}
               label="Description"
               sx={{ margin: "0 0 1rem" }}
+              data-testid="tag-form-description"
               multiline
               rows={3}
             />
@@ -52,10 +58,19 @@ export function TagForm({
             justifyContent: "flex-end",
           }}
         >
-          <Button variant="outlined" onClick={onCancel}>
+          <Button
+            variant="outlined"
+            onClick={onCancel}
+            data-testid="tag-form-cancel-button"
+          >
             Cancel
           </Button>
-          <Button type="submit" variant="contained" disabled={isLoading}>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isLoading}
+            data-testid="tag-form-submit-button"
+          >
             Submit
           </Button>
         </Box>

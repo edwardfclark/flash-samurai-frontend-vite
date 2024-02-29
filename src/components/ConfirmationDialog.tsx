@@ -26,7 +26,11 @@ export function ConfirmationDialog({
   isLoading,
 }: ComponentProps) {
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog
+      open={isOpen}
+      onClose={onClose}
+      data-testid="confirmation-dialog-wrapper"
+    >
       <DialogTitle>{title}</DialogTitle>
       {description && (
         <DialogContent>
@@ -34,12 +38,24 @@ export function ConfirmationDialog({
         </DialogContent>
       )}
       <DialogActions>
-        <Button onClick={onClose} variant="outlined">
+        <Button
+          onClick={onClose}
+          variant="outlined"
+          data-testid="confirmation-dialog-cancel-button"
+        >
           Cancel
         </Button>
-        <Button onClick={onConfirm} variant="contained">
+        <Button
+          onClick={onConfirm}
+          variant="contained"
+          data-testid="confirmation-dialog-confirm-button"
+        >
           {isLoading ? (
-            <CircularProgress size={24} color="inherit" />
+            <CircularProgress
+              size={24}
+              color="inherit"
+              data-testid="confirmation-dialog-loading-spinner"
+            />
           ) : (
             "Confirm"
           )}

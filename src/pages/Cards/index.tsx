@@ -39,7 +39,7 @@ export function Cards() {
     id: card._id,
     question: card.question,
     answer: card.answer,
-    reference: card.reference ?? "-",
+    references: card.references?.map((ref) => ref.text).join(", ") ?? "-",
     tags: card.tags?.map((tag) => tag.name).join(", ") ?? "-",
   }));
 
@@ -61,8 +61,8 @@ export function Cards() {
       disableColumnMenu: true,
     },
     {
-      field: "reference",
-      headerName: "Reference",
+      field: "references",
+      headerName: "References",
       flex: 1,
       sortable: false,
       filterable: false,
