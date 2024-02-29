@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const apiUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
 
+// Monitor all major frontend performance metrics and
+// send them to the server when the user navigates away from the page.
+
 (function (ready) {
   if (
     document.readyState === "complete" ||
