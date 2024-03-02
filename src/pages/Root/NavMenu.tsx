@@ -32,7 +32,7 @@ export function NavMenu() {
     if (!isAuthenticated && pathname !== "/login") {
       navigate("/login");
     }
-  }, [isAuthenticated, pathname]);
+  }, [isAuthenticated, pathname, navigate]);
 
   function handleNavMenuOpen(event: React.MouseEvent<HTMLElement>) {
     setAnchorElNav(event.currentTarget);
