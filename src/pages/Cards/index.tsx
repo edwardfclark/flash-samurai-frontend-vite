@@ -146,7 +146,6 @@ export function Cards() {
                 page: page?.toString(),
                 limit: pageSize?.toString(),
               });
-              console.log(model);
               setPaginationModel(model);
             }}
             disableRowSelectionOnClick
