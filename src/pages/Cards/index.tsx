@@ -16,8 +16,8 @@ export function Cards() {
   const searchParamsPage = searchParams?.get("page");
   const searchParamsLimit = searchParams?.get("limit");
   const [paginationModel, setPaginationModel] = useState({
-    page: (searchParamsPage as unknown as number) ?? 0,
-    pageSize: (searchParamsLimit as unknown as number) ?? 20,
+    page: searchParamsPage ? parseInt(searchParamsPage) : 0,
+    pageSize: searchParamsLimit ? parseInt(searchParamsLimit) : 20,
   });
   const params = useParams();
   const groupId = params?.groupId;
@@ -143,9 +143,10 @@ export function Cards() {
             onPaginationModelChange={(model) => {
               const { page, pageSize } = model;
               setSearchParams({
-                page: page as unknown as string,
-                limit: pageSize as unknown as string,
+                page: page?.toString(),
+                limit: pageSize?.toString(),
               });
+              console.log(model);
               setPaginationModel(model);
             }}
             disableRowSelectionOnClick
