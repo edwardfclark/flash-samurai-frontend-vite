@@ -6,6 +6,6 @@ The original frontend for this project can be found at [flash-samurai-frontend-c
 
 ## Setup
 
-1. Make sure `flash-samurai-backend` is running.
+1. Make sure `flash-samurai-backend` is running. You can find the repo for the backend [here](https://github.com/edwardfclark/flash-samurai-backend).
 2. Create a `.env` file and point it at the API's URL, e.g. `VITE_API_URL="http://localhost:3001"`.
 3. `yarn dev`
