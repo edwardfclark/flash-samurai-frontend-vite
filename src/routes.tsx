@@ -11,6 +11,7 @@ import { TagUpdate } from "./pages/TagUpdate";
 import { Cards } from "./pages/Cards";
 import { CardCreate } from "./pages/CardCreate";
 import { CardUpdate } from "./pages/CardUpdate";
+import { Register } from "./pages/Register";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
       {
         path: "/",

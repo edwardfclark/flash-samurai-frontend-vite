@@ -29,7 +29,7 @@ export function NavMenu() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated && pathname !== "/login") {
+    if (!isAuthenticated && pathname !== "/login" && pathname !== "/register") {
       navigate("/login");
     }
   }, [isAuthenticated, pathname, navigate]);

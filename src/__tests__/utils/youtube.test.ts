@@ -169,9 +169,7 @@ const validIds = [
 test("it grabs the video ID from the URL for all supported formats", async () => {
   supportedFormats.forEach((url) => {
     const videoId = getYouTubeVideoIdFromUrl(url);
-    if (!videoId) {
-      console.log("No video ID found for", url);
-    }
+
     expect(videoId).not.toBe(undefined);
     expect(validIds).includes(videoId);
   });

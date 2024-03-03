@@ -1,5 +1,6 @@
 import { IReference } from "../../types/Cards";
 import { Stack, Typography, Link, Box } from "@mui/material";
+import { uid } from "uid";
 
 function createYouTubeLink(videoID?: string, timestampSeconds?: string) {
   const url = `https://www.youtube.com/watch?v=${videoID}`;
@@ -16,8 +17,8 @@ export function ReferencesList({ references }: { references: IReference[] }) {
     <>
       <Typography variant="h6">References:</Typography>
       <Stack>
-        {references.map((ref, idx) => (
-          <Box key={idx}>
+        {references.map((ref) => (
+          <Box key={uid()}>
             {ref.type === "text" && <Typography>{ref.text}</Typography>}
             {ref.type === "link" && Boolean(ref?.url) && (
               <Link href={ref?.url} target="_blank">
