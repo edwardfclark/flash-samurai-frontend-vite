@@ -25,6 +25,9 @@ export function useAuth() {
       const { token } = res;
       cookies.set("token", token, { path: "/" });
       enqueueSnackbar("Login successful", { variant: "success" });
+
+      // Set the token on the axios client
+      axiosClient.defaults.headers.Authorization = `Bearer ${token}`;
     },
     onError: () => {
       enqueueSnackbar("Login failed", { variant: "error" });
