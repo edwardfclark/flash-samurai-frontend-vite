@@ -9,6 +9,10 @@ interface LoginCredentials {
   password: string;
 }
 
+interface RegisterCredentials extends LoginCredentials {
+  confirmPassword: string;
+}
+
 export function useAuth() {
   const cookies = new Cookies();
   const token = cookies.get("token");
@@ -33,10 +37,25 @@ export function useAuth() {
     enqueueSnackbar("Logout successful", { variant: "info" });
   }
 
+  const registerMutation = useMutation({
+    mutationFn: (credentials: RegisterCredentials) =>
+      axiosClient.post("/api/signup", credentials).then((res) => res.data),
+    onSuccess: (res) => {
+      enqueueSnackbar("Registration successful", { variant: "success" });
+      navigate("/login");
+    },
+    onError: () => {
+      enqueueSnackbar("Registration failed", { variant: "error" });
+    },
+  });
+
   return {
     token,
     isAuthenticated: !!token,
+    isLoading: loginMutation.isPending || registerMutation.isPending,
     login: (credentials: LoginCredentials) => loginMutation.mutate(credentials),
     logout,
+    register: (credentials: RegisterCredentials) =>
+      registerMutation.mutate(credentials),
   };
 }
