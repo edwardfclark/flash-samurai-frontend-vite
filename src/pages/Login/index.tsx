@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useAuth } from "../../hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 export function Login() {
   const [credentials, setCredentials] = useState({
@@ -75,6 +75,7 @@ export function Login() {
               setCredentials({ ...credentials, password: e.target.value })
             }
           />
+          <Link to="/register">Don&apos;t have an account? Register here.</Link>
           <Button
             type="submit"
             fullWidth
