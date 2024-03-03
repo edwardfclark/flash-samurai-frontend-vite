@@ -26,7 +26,7 @@ export function useAuth() {
       cookies.set("token", token, { path: "/" });
       enqueueSnackbar("Login successful", { variant: "success" });
 
-      // Set the token on the axios client
+      // Set the token on the axios client since we now have a token
       axiosClient.defaults.headers.Authorization = `Bearer ${token}`;
     },
     onError: () => {
@@ -43,7 +43,7 @@ export function useAuth() {
   const registerMutation = useMutation({
     mutationFn: (credentials: RegisterCredentials) =>
       axiosClient.post("/api/signup", credentials).then((res) => res.data),
-    onSuccess: (res) => {
+    onSuccess: () => {
       enqueueSnackbar("Registration successful", { variant: "success" });
       navigate("/login");
     },
