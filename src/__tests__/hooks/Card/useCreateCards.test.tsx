@@ -1,4 +1,4 @@
-import { expect, test, afterEach, beforeAll } from "vitest";
+import { expect, test, afterEach, beforeAll, vi } from "vitest";
 import { renderHook, waitFor, cleanup } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useCreateCard } from "../../../hooks/Card/useCreateCard";
@@ -21,6 +21,8 @@ const queryClient = new QueryClient({
 const mock = new MockAdapter(axiosClient, { onNoMatch: "throwException" });
 
 const card: ICard = {
+  _id: "test_id",
+  groupId: GROUP_TEST_ID,
   question: "Question",
   answer: "Answer",
   references: [
@@ -65,6 +67,27 @@ test("it creates a card", async () => {
   result.current.mutate(card);
 
   await waitFor(() => expect(result?.current?.data).toEqual(card));
+
+  unmount();
+});
+
+test("it triggers the successCallback function if the function was provided", async () => {
+  mock.onPost(`/api/card`).reply(200, card);
+  const successCallback = vi.fn();
+  const { result, unmount } = renderHook(
+    () => useCreateCard({ groupId: GROUP_TEST_ID, successCallback }),
+    {
+      wrapper: ({ children }) => (
+        <QueryClientProvider client={queryClient}>
+          <SnackbarProvider>{children}</SnackbarProvider>
+        </QueryClientProvider>
+      ),
+    },
+  );
+
+  result.current.mutate(card);
+
+  await waitFor(() => expect(successCallback).toHaveBeenCalledTimes(1));
 
   unmount();
 });
